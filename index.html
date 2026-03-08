@@ -59,7 +59,7 @@
       <div class="hero-stats">
         <div class="stat-pill">
           <span class="stat-num" id="hero-co2">—</span>
-          <span class="stat-label">g CO₂/view</span>
+          <span class="stat-label">g CO<sub>2</sub>/view</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-pill">
@@ -117,7 +117,7 @@
         <div class="audit-card" id="audit-co2">
           <div class="audit-icon">🌱</div>
           <div class="audit-value" id="val-co2">—</div>
-          <div class="audit-label">CO₂ per view</div>
+          <div class="audit-label">CO<sub>2</sub> per view</div>
           <div class="audit-compare" id="cmp-co2"></div>
         </div>
         <div class="audit-card audit-grade-card">
@@ -131,8 +131,8 @@
         <button class="outline sm" id="audit-refresh">↻ Refresh metrics</button>
         <span class="audit-time">Last measured: <span id="audit-timestamp">—</span></span>
         <div class="audit-methodology">
-          Methodology: <a href="https://www.websitecarbon.com/how-does-it-work/" target="_blank" rel="noopener">Website Carbon Calculator</a> formula.
-          Transfer size via <code>PerformanceResourceTiming</code>. Heap via <code>performance.memory</code>.
+          Methodology: <a href="https://www.websitecarbon.com/how-does-it-work/" target="_blank" rel="noopener">Website Carbon Calculator v3</a> formula.
+          Transfer size via <code>PerformanceResourceTiming</code>. CO₂ = bytes × 3.18×10⁻⁸ g (network + DC + device energy × grid intensity).
         </div>
       </div>
     </div>
