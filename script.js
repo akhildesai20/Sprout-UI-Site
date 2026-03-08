@@ -288,3 +288,34 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
   cards.forEach(card => observer.observe(card));
 })();
+
+
+// ── INSTALL TABS (plain JS, no Sprout dependency) ─────────────
+(function initInstallTabs() {
+  const tabBar = document.querySelector('.install-tab-bar');
+  if (!tabBar) return;
+
+  const tabs   = tabBar.querySelectorAll('.install-tab');
+  const panels = {
+    'cdn-panel': document.getElementById('cdn-panel'),
+    'npm-panel': document.getElementById('npm-panel'),
+    'dl-panel':  document.getElementById('dl-panel'),
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Deactivate all
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      Object.values(panels).forEach(p => { if (p) p.hidden = true; });
+
+      // Activate clicked
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const target = panels[tab.dataset.target];
+      if (target) target.hidden = false;
+    });
+  });
+})();
