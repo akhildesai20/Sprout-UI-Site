@@ -450,64 +450,56 @@
       </div>
 
       <div class="install-tabs-wrap">
-        <sp-tabs>
-          <sp-tab-list>
-            <sp-tab panel="cdn-panel" aria-selected="true">CDN</sp-tab>
-            <sp-tab panel="npm-panel">npm</sp-tab>
-            <sp-tab panel="dl-panel">Download</sp-tab>
-          </sp-tab-list>
+        <div class="install-tab-bar" role="tablist">
+          <button class="install-tab active" role="tab" aria-selected="true"  data-target="cdn-panel">CDN</button>
+          <button class="install-tab"        role="tab" aria-selected="false" data-target="npm-panel">npm</button>
+          <button class="install-tab"        role="tab" aria-selected="false" data-target="dl-panel">Download</button>
+        </div>
 
-          <sp-panel id="cdn-panel">
-            <div class="install-panel">
-              <p class="install-desc">Drop two tags into your <code>&lt;head&gt;</code>. Nothing else required.</p>
-              <div class="code-block">
-                <div class="code-block-header">
-                  <span>HTML</span>
-                  <button class="ghost icon sm" id="copy-cdn" title="Copy">⎘</button>
-                </div>
-                <pre><code id="snippet-cdn">&lt;link rel="stylesheet"
+        <div id="cdn-panel" class="install-panel" role="tabpanel">
+          <p class="install-desc">Drop two tags into your <code>&lt;head&gt;</code>. Nothing else required.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>HTML</span>
+              <button class="ghost icon sm" id="copy-cdn" title="Copy">⎘</button>
+            </div>
+            <pre><code id="snippet-cdn">&lt;link rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.css" /&gt;
 &lt;script defer
   src="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.js"&gt;&lt;/script&gt;</code></pre>
-              </div>
-            </div>
-          </sp-panel>
+          </div>
+        </div>
 
-          <sp-panel id="npm-panel" hidden>
-            <div class="install-panel">
-              <p class="install-desc">Install via npm and import into your build pipeline.</p>
-              <div class="code-block">
-                <div class="code-block-header">
-                  <span>Shell</span>
-                  <button class="ghost icon sm" id="copy-npm" title="Copy">⎘</button>
-                </div>
-                <pre><code id="snippet-npm">npm install @akhildesai20/sprout-ui</code></pre>
-              </div>
-              <div class="code-block" style="margin-top:var(--sp-3)">
-                <div class="code-block-header">
-                  <span>JS</span>
-                  <button class="ghost icon sm" id="copy-npm-import" title="Copy">⎘</button>
-                </div>
-                <pre><code id="snippet-npm-import">import '@akhildesai20/sprout-ui/dist/sprout.min.css';
+        <div id="npm-panel" class="install-panel" role="tabpanel" hidden>
+          <p class="install-desc">Install via npm and import into your build pipeline.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Shell</span>
+              <button class="ghost icon sm" id="copy-npm" title="Copy">⎘</button>
+            </div>
+            <pre><code id="snippet-npm">npm install @akhildesai20/sprout-ui</code></pre>
+          </div>
+          <div class="code-block" style="margin-top:var(--sp-3)">
+            <div class="code-block-header">
+              <span>JS</span>
+              <button class="ghost icon sm" id="copy-npm-import" title="Copy">⎘</button>
+            </div>
+            <pre><code id="snippet-npm-import">import '@akhildesai20/sprout-ui/dist/sprout.min.css';
 import Sprout from '@akhildesai20/sprout-ui';</code></pre>
-              </div>
-            </div>
-          </sp-panel>
+          </div>
+        </div>
 
-          <sp-panel id="dl-panel" hidden>
-            <div class="install-panel">
-              <p class="install-desc">Download the files and self-host for maximum control and no CDN dependency.</p>
-              <div class="cluster gap-2">
-                <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.css"
-                   download class="button outline">↓ sprout.min.css</a>
-                <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.js"
-                   download class="button outline">↓ sprout.min.js</a>
-                <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.bundle.js"
-                   download class="button">↓ sprout.bundle.js</a>
-              </div>
-            </div>
-          </sp-panel>
-        </sp-tabs>
+        <div id="dl-panel" class="install-panel" role="tabpanel" hidden>
+          <p class="install-desc">Download the files and self-host — no CDN dependency, full control.</p>
+          <div class="cluster gap-2" style="flex-wrap:wrap">
+            <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.css"
+               download class="button outline">↓ sprout.min.css</a>
+            <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.js"
+               download class="button outline">↓ sprout.min.js</a>
+            <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.bundle.js"
+               download class="button">↓ sprout.bundle.js</a>
+          </div>
+        </div>
       </div>
 
       <!-- Quick usage snippet -->
