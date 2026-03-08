@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sprout UI — Lightweight. Sustainable. Beautiful.</title>
+  <meta name="description" content="A zero-dependency UI library built for the modern web. Tiny by principle, beautiful by design." />
+
+  <!-- Sprout UI via CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.js"></script>
+
+  <!-- Preview page styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <header class="sp-navbar" role="banner">
+    <nav>
+      <a href="#" class="sp-brand">
+        <span class="brand-leaf">✦</span> Sprout UI
+      </a>
+      <button class="sp-nav-toggle ghost icon" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-icon">☰</span>
+      </button>
+      <ul class="sp-nav-links" data-nav-menu>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#performance">Performance</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="https://akhildesai20.github.io/Sprout-UI/" target="_blank" rel="noopener">Docs ↗</a></li>
+      </ul>
+      <div class="sp-nav-actions">
+        <button class="ghost sm" onclick="Sprout.toggleTheme()" title="Toggle theme">◑</button>
+        <a href="https://github.com/akhildesai20/Sprout-UI" target="_blank" rel="noopener" class="button sm outline">GitHub</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="badge">v1.0 · Zero dependencies</span>
+        <span class="badge outline">~8 KB gzipped</span>
+      </div>
+      <h1 class="hero-title">
+        UI that doesn't<br/>
+        <span class="hero-accent">cost the Earth.</span>
+      </h1>
+      <p class="hero-sub">
+        Sprout is a lightweight, sustainable component library. One CSS file. One JS file.
+        No build tools. No frameworks. Just semantic HTML that looks exceptional.
+      </p>
+      <div class="hero-actions">
+        <a href="#install" class="button lg">Get started</a>
+        <a href="https://akhildesai20.github.io/Sprout-UI/" target="_blank" rel="noopener" class="button lg outline">Read docs ↗</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <span class="stat-num" id="hero-co2">—</span>
+          <span class="stat-label">g CO₂/view</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill">
+          <span class="stat-num" id="hero-size">~8</span>
+          <span class="stat-label">KB gzip</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill">
+          <span class="stat-num">27</span>
+          <span class="stat-label">components</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill">
+          <span class="stat-num">0</span>
+          <span class="stat-label">dependencies</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-grid-bg" aria-hidden="true"></div>
+  </section>
+
+  <!-- ── PERFORMANCE AUDIT ─────────────────────────────────── -->
+  <section class="section" id="performance">
+    <div class="container">
+      <div class="section-header">
+        <h2>Live page audit</h2>
+        <p>Real browser metrics — measured right now on this page.</p>
+      </div>
+
+      <div class="audit-grid">
+        <div class="audit-card" id="audit-transfer">
+          <div class="audit-icon">⚡</div>
+          <div class="audit-value" id="val-transfer">—</div>
+          <div class="audit-label">Transfer size</div>
+          <div class="audit-compare" id="cmp-transfer"></div>
+        </div>
+        <div class="audit-card" id="audit-dom">
+          <div class="audit-icon">🌿</div>
+          <div class="audit-value" id="val-dom">—</div>
+          <div class="audit-label">DOM nodes</div>
+          <div class="audit-compare" id="cmp-dom"></div>
+        </div>
+        <div class="audit-card" id="audit-heap">
+          <div class="audit-icon">🧠</div>
+          <div class="audit-value" id="val-heap">—</div>
+          <div class="audit-label">JS heap used</div>
+          <div class="audit-compare" id="cmp-heap"></div>
+        </div>
+        <div class="audit-card" id="audit-css">
+          <div class="audit-icon">🎨</div>
+          <div class="audit-value" id="val-css">—</div>
+          <div class="audit-label">CSS rules</div>
+          <div class="audit-compare" id="cmp-css"></div>
+        </div>
+        <div class="audit-card" id="audit-co2">
+          <div class="audit-icon">🌱</div>
+          <div class="audit-value" id="val-co2">—</div>
+          <div class="audit-label">CO₂ per view</div>
+          <div class="audit-compare" id="cmp-co2"></div>
+        </div>
+        <div class="audit-card audit-grade-card">
+          <div class="audit-grade-label">Sustainability</div>
+          <div class="audit-grade" id="val-grade">—</div>
+          <div class="audit-grade-sub" id="val-grade-sub">Calculating…</div>
+        </div>
+      </div>
+
+      <div class="audit-footer">
+        <button class="outline sm" id="audit-refresh">↻ Refresh metrics</button>
+        <span class="audit-time">Last measured: <span id="audit-timestamp">—</span></span>
+        <div class="audit-methodology">
+          Methodology: <a href="https://www.websitecarbon.com/how-does-it-work/" target="_blank" rel="noopener">Website Carbon Calculator</a> formula.
+          Transfer size via <code>PerformanceResourceTiming</code>. Heap via <code>performance.memory</code>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPONENTS ────────────────────────────────────────── -->
+  <section class="section section-alt" id="components">
+    <div class="container">
+      <div class="section-header">
+        <h2>27 components. One file.</h2>
+        <p>Everything you need — nothing you don't.</p>
+      </div>
+
+      <div class="component-grid">
+
+        <!-- Buttons -->
+        <div class="component-card">
+          <div class="component-card-label">Buttons</div>
+          <div class="component-card-demo">
+            <div class="cluster gap-2" style="flex-wrap:wrap">
+              <button>Primary</button>
+              <button class="outline">Outline</button>
+              <button class="ghost">Ghost</button>
+              <button class="danger">Danger</button>
+              <button class="sm">Small</button>
+              <button class="lg">Large</button>
+              <button disabled>Disabled</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="component-card">
+          <div class="component-card-label">Badges</div>
+          <div class="component-card-demo">
+            <div class="cluster gap-2" style="flex-wrap:wrap">
+              <span class="badge">Default</span>
+              <span class="badge success">Success</span>
+              <span class="badge warning">Warning</span>
+              <span class="badge danger">Danger</span>
+              <span class="badge info">Info</span>
+              <span class="badge outline">Outline</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="component-card">
+          <div class="component-card-label">Alerts</div>
+          <div class="component-card-demo">
+            <div class="stack gap-2">
+              <div role="alert" class="success">Changes saved successfully.</div>
+              <div role="alert" class="warning">Session expires in 5 min.</div>
+              <div role="alert" class="danger" data-dismissible>
+                <span>Connection failed.</span>
+                <button type="button" data-dismiss-alert aria-label="Dismiss">✕</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inputs -->
+        <div class="component-card">
+          <div class="component-card-label">Inputs</div>
+          <div class="component-card-demo">
+            <div class="stack gap-2">
+              <input type="text" placeholder="Name" />
+              <input type="email" placeholder="Email address" />
+              <select>
+                <option>Select a plan…</option>
+                <option>Starter</option>
+                <option>Pro</option>
+              </select>
+              <textarea placeholder="Message" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toggle & Range -->
+        <div class="component-card">
+          <div class="component-card-label">Toggle & Range</div>
+          <div class="component-card-demo">
+            <div class="stack gap-3">
+              <label class="fieldset-row">
+                <span>Notifications</span>
+                <input type="checkbox" role="switch" checked />
+              </label>
+              <label class="fieldset-row">
+                <span>Dark mode</span>
+                <input type="checkbox" role="switch" />
+              </label>
+              <label class="fieldset-row">
+                <span>Volume</span>
+                <input type="range" min="0" max="100" value="60" />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress & Meter -->
+        <div class="component-card">
+          <div class="component-card-label">Progress & Meter</div>
+          <div class="component-card-demo">
+            <div class="stack gap-3">
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:var(--sp-1)">
+                  <small>Uploading…</small><small>72%</small>
+                </div>
+                <progress value="72" max="100"></progress>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:var(--sp-1)">
+                  <small>Storage used</small><small>4.1 / 10 GB</small>
+                </div>
+                <meter value="4.1" min="0" max="10" low="3" high="8" optimum="2"></meter>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="component-card">
+          <div class="component-card-label">Cards</div>
+          <div class="component-card-demo">
+            <div class="card">
+              <div class="card-header">
+                <strong>Project Sprout</strong>
+                <span class="badge success">Active</span>
+              </div>
+              <div class="card-body">
+                <p style="margin:0;font-size:var(--sp-text-sm);color:var(--sp-text-2)">
+                  Zero-dependency UI library. 27 components. ~8 KB gzip.
+                </p>
+              </div>
+              <div class="card-footer">
+                <button class="sm ghost">View</button>
+                <button class="sm">Open →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="component-card">
+          <div class="component-card-label">Tabs</div>
+          <div class="component-card-demo">
+            <sp-tabs>
+              <sp-tab-list>
+                <sp-tab panel="overview-p" aria-selected="true">Overview</sp-tab>
+                <sp-tab panel="settings-p">Settings</sp-tab>
+                <sp-tab panel="logs-p">Logs</sp-tab>
+              </sp-tab-list>
+              <sp-panel id="overview-p"><p style="margin:var(--sp-3) 0 0">Project overview content.</p></sp-panel>
+              <sp-panel id="settings-p" hidden><p style="margin:var(--sp-3) 0 0">Settings panel content.</p></sp-panel>
+              <sp-panel id="logs-p" hidden><p style="margin:var(--sp-3) 0 0">Activity logs appear here.</p></sp-panel>
+            </sp-tabs>
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="component-card">
+          <div class="component-card-label">Accordion</div>
+          <div class="component-card-demo">
+            <details open>
+              <summary>What is Sprout UI?</summary>
+              <p>A lightweight, zero-dependency UI library for the modern web.</p>
+            </details>
+            <details>
+              <summary>Does it need a build step?</summary>
+              <p>No. Drop in two files — CSS and JS. That's it.</p>
+            </details>
+            <details>
+              <summary>Is it accessible?</summary>
+              <p>Yes. Semantic HTML, ARIA, and keyboard nav throughout.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="component-card">
+          <div class="component-card-label">Modal</div>
+          <div class="component-card-demo">
+            <button data-modal-open="preview-modal">Open modal</button>
+            <dialog id="preview-modal">
+              <div class="modal-header">
+                <strong>Confirm action</strong>
+                <button class="ghost icon" data-modal-close aria-label="Close">✕</button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to proceed? This cannot be undone.</p>
+              </div>
+              <div class="modal-footer">
+                <button class="outline" data-modal-close>Cancel</button>
+                <button class="danger" data-modal-close>Confirm</button>
+              </div>
+            </dialog>
+          </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="component-card">
+          <div class="component-card-label">Toast</div>
+          <div class="component-card-demo">
+            <div class="cluster gap-2" style="flex-wrap:wrap">
+              <button class="sm" onclick="Sprout.toast('Changes saved!', {type:'success'})">Success</button>
+              <button class="sm outline" onclick="Sprout.toast('Check your input.', {type:'warning'})">Warning</button>
+              <button class="sm danger" onclick="Sprout.toast('Something went wrong.', {type:'danger'})">Error</button>
+              <button class="sm ghost" onclick="Sprout.toast('New update available.', {type:'info'})">Info</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatars -->
+        <div class="component-card">
+          <div class="component-card-label">Avatars</div>
+          <div class="component-card-demo">
+            <div class="cluster gap-3" style="align-items:center">
+              <span class="avatar sm">AB</span>
+              <span class="avatar" data-status="online">JD</span>
+              <span class="avatar lg">XY</span>
+              <div class="avatar-group">
+                <span class="avatar sm">M</span>
+                <span class="avatar sm">K</span>
+                <span class="avatar sm">R</span>
+                <span class="avatar sm" style="background:var(--sp-surface-3);color:var(--sp-text-muted)">+5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropdown -->
+        <div class="component-card">
+          <div class="component-card-label">Dropdown</div>
+          <div class="component-card-demo">
+            <sp-dropdown>
+              <button slot="trigger" class="outline">Options ▾</button>
+              <sp-menu>
+                <sp-menu-item>Edit project</sp-menu-item>
+                <sp-menu-item>Duplicate</sp-menu-item>
+                <sp-menu-item>Archive</sp-menu-item>
+                <sp-menu-item class="danger">Delete</sp-menu-item>
+              </sp-menu>
+            </sp-dropdown>
+          </div>
+        </div>
+
+        <!-- Spinner & Skeleton -->
+        <div class="component-card">
+          <div class="component-card-label">Spinner & Skeleton</div>
+          <div class="component-card-demo">
+            <div class="cluster gap-4" style="align-items:center;margin-bottom:var(--sp-3)">
+              <span class="spinner" aria-label="Loading"></span>
+              <span class="spinner sm" aria-label="Loading"></span>
+              <span class="spinner lg" aria-label="Loading"></span>
+            </div>
+            <div class="stack gap-2">
+              <div class="skeleton animated" style="height:14px;border-radius:var(--sp-radius-full)"></div>
+              <div class="skeleton animated" style="height:14px;border-radius:var(--sp-radius-full);width:75%"></div>
+              <div class="skeleton animated" style="height:14px;border-radius:var(--sp-radius-full);width:50%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat -->
+        <div class="component-card">
+          <div class="component-card-label">Stats</div>
+          <div class="component-card-demo">
+            <div class="cluster gap-4">
+              <div class="stat">
+                <div class="stat-value">8 KB</div>
+                <div class="stat-label">Bundle size</div>
+                <div class="stat-delta positive">↓ 94% vs avg</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Dependencies</div>
+                <div class="stat-delta positive">✦ Zero</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value">27</div>
+                <div class="stat-label">Components</div>
+                <div class="stat-delta">Ready</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Block -->
+        <div class="component-card">
+          <div class="component-card-label">Code Block</div>
+          <div class="component-card-demo">
+            <div class="code-block">
+              <div class="code-block-header">
+                <span>HTML</span>
+                <button class="ghost icon sm" data-copy='<button class="danger">Delete</button>' title="Copy">⎘</button>
+              </div>
+              <pre><code>&lt;button class="danger"&gt;Delete&lt;/button&gt;
+&lt;div role="alert" class="success"&gt;
+  Saved!
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INSTALL ────────────────────────────────────────────── -->
+  <section class="section" id="install">
+    <div class="container">
+      <div class="section-header">
+        <h2>Start in 30 seconds.</h2>
+        <p>Three ways to get Sprout into your project.</p>
+      </div>
+
+      <div class="install-tabs-wrap">
+        <sp-tabs>
+          <sp-tab-list>
+            <sp-tab panel="cdn-panel" aria-selected="true">CDN</sp-tab>
+            <sp-tab panel="npm-panel">npm</sp-tab>
+            <sp-tab panel="dl-panel">Download</sp-tab>
+          </sp-tab-list>
+
+          <sp-panel id="cdn-panel">
+            <div class="install-panel">
+              <p class="install-desc">Drop two tags into your <code>&lt;head&gt;</code>. Nothing else required.</p>
+              <div class="code-block">
+                <div class="code-block-header">
+                  <span>HTML</span>
+                  <button class="ghost icon sm" id="copy-cdn" title="Copy">⎘</button>
+                </div>
+                <pre><code id="snippet-cdn">&lt;link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.css" /&gt;
+&lt;script defer
+  src="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.js"&gt;&lt;/script&gt;</code></pre>
+              </div>
+            </div>
+          </sp-panel>
+
+          <sp-panel id="npm-panel" hidden>
+            <div class="install-panel">
+              <p class="install-desc">Install via npm and import into your build pipeline.</p>
+              <div class="code-block">
+                <div class="code-block-header">
+                  <span>Shell</span>
+                  <button class="ghost icon sm" id="copy-npm" title="Copy">⎘</button>
+                </div>
+                <pre><code id="snippet-npm">npm install @akhildesai20/sprout-ui</code></pre>
+              </div>
+              <div class="code-block" style="margin-top:var(--sp-3)">
+                <div class="code-block-header">
+                  <span>JS</span>
+                  <button class="ghost icon sm" id="copy-npm-import" title="Copy">⎘</button>
+                </div>
+                <pre><code id="snippet-npm-import">import '@akhildesai20/sprout-ui/dist/sprout.min.css';
+import Sprout from '@akhildesai20/sprout-ui';</code></pre>
+              </div>
+            </div>
+          </sp-panel>
+
+          <sp-panel id="dl-panel" hidden>
+            <div class="install-panel">
+              <p class="install-desc">Download the files and self-host for maximum control and no CDN dependency.</p>
+              <div class="cluster gap-2">
+                <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.css"
+                   download class="button outline">↓ sprout.min.css</a>
+                <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.min.js"
+                   download class="button outline">↓ sprout.min.js</a>
+                <a href="https://cdn.jsdelivr.net/npm/@akhildesai20/sprout-ui@latest/dist/sprout.bundle.js"
+                   download class="button">↓ sprout.bundle.js</a>
+              </div>
+            </div>
+          </sp-panel>
+        </sp-tabs>
+      </div>
+
+      <!-- Quick usage snippet -->
+      <div class="quick-usage">
+        <h3>Then use any component:</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span>HTML</span>
+            <button class="ghost icon sm" id="copy-usage" title="Copy">⎘</button>
+          </div>
+          <pre><code id="snippet-usage">&lt;!-- Button --&gt;
+&lt;button class="danger"&gt;Delete&lt;/button&gt;
+
+&lt;!-- Alert --&gt;
+&lt;div role="alert" class="success"&gt;Saved successfully.&lt;/div&gt;
+
+&lt;!-- Modal trigger --&gt;
+&lt;button data-modal-open="my-modal"&gt;Open&lt;/button&gt;
+&lt;dialog id="my-modal"&gt;
+  &lt;div class="modal-header"&gt;…&lt;/div&gt;
+  &lt;div class="modal-body"&gt;…&lt;/div&gt;
+&lt;/dialog&gt;
+
+&lt;!-- Toast --&gt;
+&lt;script&gt;
+  Sprout.toast('Saved!', { type: 'success' });
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-leaf">✦</span> <strong>Sprout UI</strong>
+          <p>Lightweight. Sustainable. Beautiful.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://akhildesai20.github.io/Sprout-UI/" target="_blank" rel="noopener">Docs</a>
+          <a href="https://github.com/akhildesai20/Sprout-UI" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.npmjs.com/package/@akhildesai20/sprout-ui" target="_blank" rel="noopener">npm</a>
+        </div>
+      </div>
+      <p class="footer-meta">MIT License · Lightweight by principle. Sustainable by design. © 2026 Sprout UI</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
